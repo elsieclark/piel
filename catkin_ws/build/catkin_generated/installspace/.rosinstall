@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/pi/Desktop/piel/catkin_ws/install/setup.sh

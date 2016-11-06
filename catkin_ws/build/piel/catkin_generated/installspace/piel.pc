@@ -1,0 +1,8 @@
+prefix=/home/pi/Desktop/piel/catkin_ws/install
+
+Name: piel
+Description: Description of piel
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/Desktop/piel/catkin_ws/install/lib 
+Requires: 
