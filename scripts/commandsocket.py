@@ -5,7 +5,7 @@ from socketIO_client import SocketIO, LoggingNamespace
 socketIO = SocketIO('localhost:3000')
 
 def onCommand(*args):
-    print(args[0].split('+'))
+    print(args[0].split('+')[0])
 
 while (True):
     socketIO.on("commands", onCommand)
