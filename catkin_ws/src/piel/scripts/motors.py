@@ -4,9 +4,6 @@ import time
 import rospy
 from std_msgs.msg import String
 
-leftPwr = 0
-rightPwr = 0
-
 
 GPIO.setmode(GPIO.BOARD)
 
@@ -27,20 +24,24 @@ bw2.start(0)
 
 
 def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "%s", data.data)
+    #rospy.loginfo(data.data)
+    pwrSet = data.data.split("+")
+    leftPwr = pwrSet[0]
+    rightPwr = pwrSet[1]
+    rospy.loginfo(leftPwr)
     
-    if (int(leftPwr) > 0):
+    if (int(leftPwr) > 0 and int(leftPwr) <= 100):
         bw1.ChangeDutyCycle(0)
         fw1.ChangeDutyCycle(float(leftPwr))
-    else:
+    elif (int(leftPwr) >= -100):
         fw1.ChangeDutyCycle(0)
         bw1.ChangeDutyCycle(-1 * float(leftPwr))
 
 
-    if (int(rightPwr) > 0):
+    if (int(rightPwr) > 0 and int(rightPwr) <= 100):
         bw2.ChangeDutyCycle(0)
         fw2.ChangeDutyCycle(float(rightPwr))
-    else:
+    elif (int(rightPwr) >= -100):
         fw2.ChangeDutyCycle(0)
         bw2.ChangeDutyCycle(-1 * float(rightPwr))
             
