@@ -7,15 +7,15 @@ from std_msgs.msg import String
 
 GPIO.setmode(GPIO.BOARD)
 
-GPIO.setup(7, GPIO.OUT)
-GPIO.setup(11, GPIO.OUT)
-GPIO.setup(13, GPIO.OUT)
-GPIO.setup(16, GPIO.OUT)
+GPIO.setup(35, GPIO.OUT)
+GPIO.setup(37, GPIO.OUT)
+GPIO.setup(36, GPIO.OUT)
+GPIO.setup(38, GPIO.OUT)
 
-fw1 = GPIO.PWM(7, 50)
-bw1 = GPIO.PWM(11, 50)
-fw2 = GPIO.PWM(13, 50)
-bw2 = GPIO.PWM(16, 50)
+fw1 = GPIO.PWM(35, 50)
+bw1 = GPIO.PWM(37, 50)
+fw2 = GPIO.PWM(36, 50)
+bw2 = GPIO.PWM(38, 50)
 
 fw1.start(0)
 bw1.start(0)
