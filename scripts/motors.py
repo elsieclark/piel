@@ -8,7 +8,7 @@ leftPwr = 0
 rightPwr = 0
 
 def onCommand(*args):
-    print(args)
+    print("hello")
 
 socketIO.on("commands", onCommand)
 

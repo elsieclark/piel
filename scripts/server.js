@@ -13,7 +13,7 @@ io.on('connection', function(socket){
     
     socket.on('commands', function(msg){
         console.log(msg)
-        io.emit('commands', msg)
+        io.emit('commands', "HW")
     });
     
 });
