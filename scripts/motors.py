@@ -1,16 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
-from socketIO_client import SocketIO, LoggingNamespace
-socketIO = SocketIO('localhost:3000')
-
 leftPwr = 0
 rightPwr = 0
-
-def onCommand(*args):
-    print("hello")
-
-socketIO.on("commands", onCommand)
 
 
 GPIO.setmode(GPIO.BOARD)
