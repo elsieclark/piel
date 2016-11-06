@@ -30,19 +30,19 @@ def callback(data):
     rospy.loginfo(rospy.get_caller_id() + "%s", data.data)
     
     if (int(leftPwr) > 0):
-            bw1.ChangeDutyCycle(0)
-            fw1.ChangeDutyCycle(float(leftPwr))
-        else:
-            fw1.ChangeDutyCycle(0)
-            bw1.ChangeDutyCycle(-1 * float(leftPwr))
+        bw1.ChangeDutyCycle(0)
+        fw1.ChangeDutyCycle(float(leftPwr))
+    else:
+        fw1.ChangeDutyCycle(0)
+        bw1.ChangeDutyCycle(-1 * float(leftPwr))
 
 
-        if (int(rightPwr) > 0):
-            bw2.ChangeDutyCycle(0)
-            fw2.ChangeDutyCycle(float(rightPwr))
-        else:
-            fw2.ChangeDutyCycle(0)
-            bw2.ChangeDutyCycle(-1 * float(rightPwr))
+    if (int(rightPwr) > 0):
+        bw2.ChangeDutyCycle(0)
+        fw2.ChangeDutyCycle(float(rightPwr))
+    else:
+        fw2.ChangeDutyCycle(0)
+        bw2.ChangeDutyCycle(-1 * float(rightPwr))
             
 
     
