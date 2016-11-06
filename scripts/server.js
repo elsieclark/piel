@@ -11,18 +11,9 @@ io.on('connection', function(socket){
         console.log('user disconnected');
     });    
     
-    socket.on('remote', function(msg){
-	console.log(msg)
-	fs.writeFile("data.txt", "", function(err) {
-		if(err) {
-			return console.log(err)
-		}
-	});
-	fs.writeFile("data.txt", msg, function(err) {
-		if(err) {
-			return console.log(err)
-		}
-	});
+    socket.on('commands', function(msg){
+        console.log(msg)
+        io.emit('commands', msg)
     });
     
 });

@@ -1,5 +1,18 @@
 import RPi.GPIO as GPIO
 import time
+
+from socketIO_client import SocketIO, LoggingNamespace
+socketIO = SocketIO('localhost:3000')
+
+leftPwr = 0
+rightPwr = 0
+
+def onCommand(*args):
+    print(args)
+
+socketIO.on("commands", onCommand)
+
+
 GPIO.setmode(GPIO.BOARD)
 
 GPIO.setup(7, GPIO.OUT)
@@ -19,26 +32,21 @@ bw2.start(0)
 
 try:
     while True:
-        f = open("data.txt", "r")
-        data = f.read().split('+')
-        print(data)
 
-        if (data != [""] and abs(int(data[0])) <= 100 and abs(int(data[1])) <= 100):
+        if (int(leftPwr) > 0):
+            bw1.ChangeDutyCycle(0)
+            fw1.ChangeDutyCycle(float(leftPwr))
+        else:
+            fw1.ChangeDutyCycle(0)
+            bw1.ChangeDutyCycle(-1 * float(leftPwr))
 
-            if (int(data[0]) > 0):
-                bw1.ChangeDutyCycle(0)
-                fw1.ChangeDutyCycle(float(data[0]))
-            else:
-                fw1.ChangeDutyCycle(0)
-                bw1.ChangeDutyCycle(-1 * float(data[0]))
-            
 
-            if (int(data[1]) > 0):
-                bw2.ChangeDutyCycle(0)
-                fw2.ChangeDutyCycle(float(data[1]))
-            else:
-                fw2.ChangeDutyCycle(0)
-                bw2.ChangeDutyCycle(-1 * float(data[1]))
+        if (int(rightPwr) > 0):
+            bw2.ChangeDutyCycle(0)
+            fw2.ChangeDutyCycle(float(rightPwr))
+        else:
+            fw2.ChangeDutyCycle(0)
+            bw2.ChangeDutyCycle(-1 * float(rightPwr))
         
         time.sleep(0.02)
 
